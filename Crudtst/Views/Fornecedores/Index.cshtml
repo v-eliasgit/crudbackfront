@@ -1,0 +1,58 @@
+﻿@model List<Fornecedores>
+@{
+    ViewData["Title"] = "Fornecedores";
+}
+
+<div class="container-x1">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div>
+
+                <div class="col-sm-6">
+                    <a class="btn btn-success" role="button" asp-controller="Fornecedores" asp-action="Criar">Cadastrar Fornecedor</a>
+                </div>
+                <br />
+
+                <div class="table-title">
+                    <h1 class="display-4">Listagem de Fornecedores</h1>
+                </div>
+
+                <table class="table table-striped table-hover">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">CNPJ</th>
+                            <th scope="col">Especialidade</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var fornecedores in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@fornecedores.Id</th>
+                                    <td>@fornecedores.Nome</td>
+                                    <td>@fornecedores.Cnpj</td>
+                                    <td>@fornecedores.Especialidade</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a role="button" class="btn btn-primary" asp-route-id="@fornecedores.Id" asp-controller="Fornecedores" asp-action="Editar">Editar</a>
+                                            <a role="button" class="btn btn-danger" asp-route-id="@fornecedores.Id" asp-controller="Fornecedores" asp-action="ApagarConfirmacao">Apagar</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
